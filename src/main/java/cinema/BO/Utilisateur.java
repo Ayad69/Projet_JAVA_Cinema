@@ -59,6 +59,8 @@ public class Utilisateur {
         this.login = login;
     }
 
+
+// methode toString pour afficher les informations de l'utilisateur
     @Override
     public String toString() {
         return super.toString();
