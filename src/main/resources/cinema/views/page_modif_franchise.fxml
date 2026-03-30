@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity"
+    maxWidth="-Infinity"
+    minHeight="-Infinity"
+    minWidth="-Infinity"
+    prefHeight="478.0"
+    prefWidth="729.0"
+    xmlns="http://javafx.com/javafx/23.0.1"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="cinema.controllers.ModifierFranchiseController">
+    <children>
+        <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="729.0">
+            <menus>
+                <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/franchise_64x64.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bListeFranchise" mnemonicParsing="false"
+                            onAction="#bListFranchiseClick" text="Liste franchises" />
+                        <MenuItem fx:id="bAjouterFranchise" mnemonicParsing="false"
+                            onAction="#bAjouterFranchiseClick" text="Ajouter une franchise" />
+                    </items>
+                </Menu>
+                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/cinema_32x32.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bListeCinema" mnemonicParsing="false"
+                            onAction="#bListeCinemaClick" text="Liste des sections" />
+                        <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false"
+                            onAction="#bAjouterCinemaClick" text="Ajouter une section" />
+                    </items>
+                </Menu>
+                <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/salle_32x32.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bListeSalle" mnemonicParsing="false"
+                            onAction="#bListeSalleClick" text="Liste cours" />
+                        <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false"
+                            onAction="#bAjouterSalleClick" text="Ajouter un cours" />
+                    </items>
+                </Menu>
+                <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/info.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bAccueil" mnemonicParsing="false" onAction="#bAccueilClick"
+                            text="Accueil" />
+                        <MenuItem fx:id="bQuitter" mnemonicParsing="false" onAction="#bQuitterClick"
+                            text="Quitter" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+
+        <Label alignment="CENTER"
+            contentDisplay="CENTER"
+            layoutY="45.0"
+            prefHeight="35.0"
+            prefWidth="727.0"
+            text="MODIFICATION D'UNE FRANCHISE"
+            textAlignment="CENTER"
+            textFill="#024010">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+
+        <HBox alignment="CENTER_LEFT"
+            layoutY="108.0"
+            prefHeight="44.0"
+            prefWidth="727.0"
+            spacing="10.0">
+            <children>
+                <Label alignment="CENTER"
+                    prefHeight="17.0"
+                    prefWidth="165.0"
+                    text="Nom : "
+                    textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tfNomFranchise" prefHeight="26.0" prefWidth="375.0" />
+            </children>
+        </HBox>
+
+
+        <HBox alignment="CENTER_LEFT"
+            layoutY="172.0"
+            prefHeight="44.0"
+            prefWidth="727.0"
+            spacing="10.0">
+            <children>
+                <Label alignment="CENTER"
+                    prefHeight="17.0"
+                    prefWidth="165.0"
+                    text="Adresse du siège social : "
+                    textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tfSiegeSocial" prefHeight="26.0" prefWidth="375.0" />
+            </children>
+        </HBox>
+
+
+        <HBox alignment="CENTER_LEFT"
+            layoutY="236.0"
+            prefHeight="66.0"
+            prefWidth="727.0"
+            spacing="10.0">
+            <children>
+                <Label alignment="CENTER"
+                    prefHeight="17.0"
+                    prefWidth="165.0"
+                    text="Gérant : "
+                    textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="lvGerantFranchise" prefHeight="37.0" prefWidth="375.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER"
+            layoutX="-1.0"
+            layoutY="375.0"
+            prefHeight="100.0"
+            prefWidth="729.0"
+            spacing="20.0">
+            <children>
+                <Button fx:id="bEnregistrer"
+                    mnemonicParsing="false"
+                    onAction="#bEnregistrerClick"
+                    prefHeight="39.0"
+                    prefWidth="200.0"
+                    text="ENREGISTRER"
+                    textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="bRetour"
+                    mnemonicParsing="false"
+                    onAction="#bRetourClick"
+                    prefHeight="39.0"
+                    prefWidth="200.0"
+                    text="RETOUR"
+                    textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+
+
+        <!-- Courbe verte en bas des boutons -->
+        <Pane layoutX="0.0" layoutY="440.0" prefHeight="30.0" prefWidth="729.0">
+            <children>
+                <QuadCurve controlX="7.666656494140625"
+                    controlY="-35.99993896484375"
+                    endX="409.6666259765625"
+                    endY="9.333282470703125"
+                    fill="#3A3AB6"
+                    layoutX="348.0"
+                    layoutY="30.0"
+                    startX="-399.66668701171875"
+                    startY="9.333282470703125"
+                    stroke="BLACK"
+                    strokeType="INSIDE"
+                    strokeWidth="0.0" />
+            </children>
+        </Pane>
+
+
+        <Rectangle arcHeight="5.0"
+            arcWidth="5.0"
+            fill="#01a321"
+            height="5.0"
+            layoutX="101.0"
+            layoutY="77.0"
+            stroke="BLACK"
+            strokeType="INSIDE"
+            strokeWidth="0.0"
+            width="508.0" />
+    </children>
+</Pane>

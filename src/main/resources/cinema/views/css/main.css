@@ -1,0 +1,29 @@
+.root {
+    -fx-font-family: "System";
+}
+
+.content {
+    -fx-background-color: white;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #024010;
+}
+
+.form-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #024010;
+}
+
+.button-bar {
+    -fx-background-color: transparent;
+}
+
+.action-button {
+    -fx-font-size: 7px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #024010;
+}

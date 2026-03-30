@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/22"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="cinema.controllers.AjouterFranchiseController"
+    stylesheets="@./css/main.css">
+
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/franchise_64x64.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bListeFranchise"
+                            text="Liste franchises"
+                            onAction="#bListFranchiseClick" />
+                        <MenuItem fx:id="bAjouterFranchise"
+                            text="Ajouter une franchise"
+                            onAction="#bAjouterFranchiseClick" />
+                    </items>
+                </Menu>
+                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/cinema_32x32.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bListeCinema"
+                            text="Liste des sections"
+                            onAction="#bListeCinemaClick" />
+                        <MenuItem fx:id="bAjouterCinema"
+                            text="Ajouter une section"
+                            onAction="#bAjouterCinemaClick" />
+                    </items>
+                </Menu>
+                <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/salle_32x32.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bListeSalle"
+                            text="Liste cours"
+                            onAction="#bListeSalleClick" />
+                        <MenuItem fx:id="bAjouterSalle"
+                            text="Ajouter un cours"
+                            onAction="#bAjouterSalleClick" />
+                    </items>
+                </Menu>
+                <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/info.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="bAccueil"
+                            text="Accueil"
+                            onAction="#bAccueilClick" />
+                        <MenuItem fx:id="bQuitter"
+                            text="Quitter"
+                            onAction="#bQuitterClick" />
+                    </items>
+                </Menu>
+
+            </menus>
+        </MenuBar>
+    </top>
+
+    <center>
+        <VBox spacing="25" alignment="TOP_CENTER" styleClass="content">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40" />
+            </padding>
+
+            <Label text="AJOUT D'UNE NOUVELLE FRANCHISE"
+                styleClass="title-label" />
+
+            <GridPane hgap="15" vgap="20" alignment="CENTER">
+
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="Nom :" styleClass="form-label"
+                    GridPane.rowIndex="0"
+                    GridPane.columnIndex="0" />
+
+                <TextField fx:id="tfNomFranchise"
+                    GridPane.rowIndex="0"
+                    GridPane.columnIndex="1" />
+
+                <Label text="Adresse du siège social :" styleClass="form-label"
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="0" />
+
+                <TextField fx:id="tfSiegeSocial"
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="1" />
+
+                <Label text="Gérant :" styleClass="form-label"
+                    GridPane.rowIndex="2"
+                    GridPane.columnIndex="0" />
+
+                <ListView fx:id="lvGerantFranchise"
+                    prefHeight="120"
+                    GridPane.rowIndex="2"
+                    GridPane.columnIndex="1" />
+
+            </GridPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="20" alignment="CENTER" styleClass="button-bar">
+            <padding>
+                <Insets top="15" bottom="20" />
+            </padding>
+
+            <Button fx:id="bRetour"
+                text="bRetour"
+                onAction="#bRetourClick"
+                styleClass="action-button" />
+
+            <Button fx:id="bEffacer"
+                text="bEffacer"
+                onAction="#bEffacerClick"
+                styleClass="action-button" />
+
+            <Button fx:id="bEnregistrer"
+                text="bEnregistrer"
+                onAction="#bEnregistrerClick"
+                styleClass="action-button" />
+        </HBox>
+    </bottom>
+</BorderPane>

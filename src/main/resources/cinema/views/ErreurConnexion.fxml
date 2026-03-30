@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane prefHeight="157.0"
+           prefWidth="560.0"
+           xmlns="http://javafx.com/javafx/22"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="cinema.controllers.ErrorController">
+
+   
+    <!-- Contenu principal -->
+    <VBox alignment="CENTER" prefWidth="419.0" spacing="30.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+
+      
+        <!-- Message d'erreur -->
+        <Text fill="#0c7422" text="Erreur : identifiant ou mot de passe incorrect" textAlignment="CENTER" wrappingWidth="480.0">
+            <font>
+                <Font name="Franklin Gothic Medium" size="22.0" />
+            </font>
+        </Text>
+
+      
+        <!-- Bouton OK -->
+        <Button fx:id="ButtonOk"
+                onAction="#ButtonOkOnAction"
+                prefHeight="35.0"
+                prefWidth="120.0"
+                style="-fx-background-color: #0c7422;"
+                text="OK"
+                textFill="WHITE" />
+    </VBox>
+</StackPane>
