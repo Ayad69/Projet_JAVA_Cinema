@@ -14,7 +14,7 @@ plugins {
 java {
     // https://docs.gradle.org/current/userguide/java_plugin.html#sec:java-extension
     toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 

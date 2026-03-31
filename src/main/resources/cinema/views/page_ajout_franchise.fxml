@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/22"
-    xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="cinema.controllers.AjouterFranchiseController"
-    stylesheets="@./css/main.css">
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cinema.controllers.AjouterFranchiseController"
+            stylesheets="@./css/main.css">
 
     <top>
         <MenuBar>
@@ -24,8 +24,8 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="bListeFranchise"
-                            text="Liste franchises"
-                            onAction="#bListFranchiseClick" />
+                                  text="Liste franchises"
+                                  onAction="#bListFranchiseClick" />
                         <MenuItem fx:id="bAjouterFranchise"
                             text="Ajouter une franchise"
                             onAction="#bAjouterFranchiseClick" />
@@ -108,8 +108,8 @@
                     GridPane.columnIndex="0" />
 
                 <TextField fx:id="tfNomFranchise"
-                    GridPane.rowIndex="0"
-                    GridPane.columnIndex="1" />
+                           GridPane.rowIndex="0"
+                           GridPane.columnIndex="1" />
 
                 <Label text="Adresse du siège social :" styleClass="form-label"
                     GridPane.rowIndex="1"
@@ -139,17 +139,17 @@
             </padding>
 
             <Button fx:id="bRetour"
-                text="bRetour"
+                text="Retour"
                 onAction="#bRetourClick"
                 styleClass="action-button" />
 
             <Button fx:id="bEffacer"
-                text="bEffacer"
-                onAction="#bEffacerClick"
-                styleClass="action-button" />
+                    text="Effacer"
+                    onAction="#bEffacerClick"
+                    styleClass="action-button" />
 
             <Button fx:id="bEnregistrer"
-                text="bEnregistrer"
+                text="Enregistrer"
                 onAction="#bEnregistrerClick"
                 styleClass="action-button" />
         </HBox>

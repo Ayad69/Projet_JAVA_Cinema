@@ -52,4 +52,5 @@ public class Cinema {
         this.idFranchise = idFranchise;
     }
 
+
 }
