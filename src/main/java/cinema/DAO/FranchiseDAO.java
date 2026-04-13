@@ -15,7 +15,7 @@ public class FranchiseDAO extends DAO<Franchise> {
     public boolean create(Franchise obj) {
         boolean controle = false;
         try {
-            String a = "INSERT INTO franchise(nom_franchise, siege_social, id_gerant) values (?,?,?,?);";
+            String a = "INSERT INTO franchise(nom_franchise, siege_social, id_gerant) values (?,?,?);";
             PreparedStatement statement = this.connect.prepareStatement(a);
             statement.setString(1, obj.getNomFranchise());
             statement.setString(2, obj.getSiegeSocial());

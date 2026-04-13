@@ -58,4 +58,8 @@ public class Utilisateur {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public String toString(){
+        return this.nom + " " + this.prenom;
+    }
 }

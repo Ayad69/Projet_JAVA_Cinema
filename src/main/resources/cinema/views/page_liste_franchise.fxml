@@ -42,7 +42,7 @@
                                 <MenuItem fx:id="bAjouterFranchise" mnemonicParsing="false" onAction="#bAjouterFranchiseClick" text="Ajouter une franchise" />
                             </items>
                         </Menu>
-                        <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                        <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion salle">
                             <graphic>
                                 <ImageView fitHeight="16" fitWidth="16">
                                     <image>
@@ -51,8 +51,8 @@
                                 </ImageView>
                             </graphic>
                             <items>
-                                <MenuItem fx:id="bListeCinema" mnemonicParsing="false" onAction="#bListeCinemaClick" text="Liste des sections" />
-                                <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false" onAction="#bAjouterCinemaClick" text="Ajouter une section" />
+                                <MenuItem fx:id="bListeCinema" mnemonicParsing="false" onAction="#bListeCinemaClick" text="Liste des cinémas" />
+                                <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false" onAction="#bAjouterCinemaClick" text="Ajouter un cinéma" />
                             </items>
                         </Menu>
                         <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
@@ -64,8 +64,8 @@
                                 </ImageView>
                             </graphic>
                             <items>
-                                <MenuItem fx:id="bListeSalle" mnemonicParsing="false" onAction="#bListeSalleClick" text="Liste cours" />
-                                <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter un cours" />
+                                <MenuItem fx:id="bListeSalle" mnemonicParsing="false" onAction="#bListeSalleClick" text="Liste salles" />
+                                <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter une salle" />
                             </items>
                         </Menu>
                         <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
@@ -88,11 +88,11 @@
         
         <TableView fx:id="tvFranchises" layoutY="50.0" prefHeight="292.0" prefWidth="873.0">
             <columns>
-                <TableColumn fx:id="tcNomFranchise" prefWidth="150.0" text="tcNomFranchise" />
-                <TableColumn fx:id="tcSiegeSocial" prefWidth="160.0" text="tcSiegeSocial" />
-                <TableColumn fx:id="tcGerant" prefWidth="210.0" text="tcGerant" />
-                <TableColumn fx:id="tcSupprimer" prefWidth="110.0" text="tcSupprimer" />
-                <TableColumn fx:id="tcModifier" prefWidth="110.0" text="tcModifier" />
+                <TableColumn fx:id="tcNomFranchise" prefWidth="150.0" text="NomFranchise" />
+                <TableColumn fx:id="tcSiegeSocial" prefWidth="160.0" text="SiegeSocial" />
+                <TableColumn fx:id="tcGerant" prefWidth="210.0" text="Gerant" />
+                <TableColumn fx:id="tcSupprimer" prefWidth="110.0" text="Supprimer" />
+                <TableColumn fx:id="tcModifier" prefWidth="110.0" text="Modifier" />
             </columns>
         </TableView>
         
