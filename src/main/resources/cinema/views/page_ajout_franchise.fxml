@@ -31,7 +31,7 @@
                             onAction="#bAjouterFranchiseClick" />
                     </items>
                 </Menu>
-                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                     <graphic>
                         <ImageView fitHeight="16" fitWidth="16">
                             <image>
@@ -44,7 +44,7 @@
                             text="Liste des sections"
                             onAction="#bListeCinemaClick" />
                         <MenuItem fx:id="bAjouterCinema"
-                            text="Ajouter une section"
+                            text="Ajouter un cinéma"
                             onAction="#bAjouterCinemaClick" />
                     </items>
                 </Menu>

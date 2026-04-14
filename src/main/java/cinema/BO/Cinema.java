@@ -52,5 +52,9 @@ public class Cinema {
         this.idFranchise = idFranchise;
     }
 
+    public String toString(){
+        return "Dénomination "+this.denomination+" Franchise "+this.idFranchise;
+    }
+
 
 }

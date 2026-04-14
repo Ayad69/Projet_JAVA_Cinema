@@ -42,7 +42,7 @@
                                 <MenuItem fx:id="bAjouterFranchise" mnemonicParsing="false" onAction="#bAjouterFranchiseClick" text="Ajouter une franchise" />
                             </items>
                         </Menu>
-                        <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion salle">
+                        <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                             <graphic>
                                 <ImageView fitHeight="16" fitWidth="16">
                                     <image>

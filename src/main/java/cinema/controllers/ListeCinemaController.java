@@ -2,11 +2,16 @@ package cinema.controllers;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import cinema.BO.Cinema;
+import cinema.BO.Franchise;
+import cinema.BO.Utilisateur;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +37,8 @@ public class ListeCinemaController extends MenuController implements Initializab
     private TableColumn<Cinema, String> tcDenomination, tcFranchise;
 
     @FXML
-    private TableColumn<Cinema, Void> tcModif, tcSupp;
+    private TableColumn<Cinema, Void> tcModif, tcSupp,tcVp;
+
 
     @FXML
     private Button bRetour;
@@ -40,10 +46,25 @@ public class ListeCinemaController extends MenuController implements Initializab
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        FranchiseDAO fDAO = new FranchiseDAO();
+
+        Map<Integer, Franchise> franchises = fDAO.findAll()
+                .stream()
+                .collect(Collectors.toMap(Franchise::getIdFranchise, u -> u));
+
+        tcFranchise.setCellValueFactory(cellData -> {
+            Franchise franchise = franchises.get(cellData.getValue().getIdFranchise());
+            return new SimpleStringProperty(
+                    franchise != null ? franchise.getNomFranchise() : "Aucun gérant");
+        });
+
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
-        tcFranchise.setCellValueFactory(new PropertyValueFactory<>("franchise"));
         ObservableList<Cinema> data = getCinema();
+        System.out.println(data);
         tvCinema.setItems(data);
+        btnModif();
+        btnSupp();
+        btnVPS();
     }
 
     private ObservableList<Cinema> getCinema() {
@@ -79,9 +100,45 @@ public class ListeCinemaController extends MenuController implements Initializab
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+            stageP.show();
         }
     }
 
+    private void btnVPS() {
+        tcVp.setCellFactory(column -> new TableCell<Cinema, Void>() {
+            private Button btn = new Button("Voir plus");
+            {
+                btn.setOnAction(event -> {
+                    Cinema cinema = getTableView().getItems().get(getIndex());
+                    Stage stageP = (Stage) bRetour.getScene().getWindow();
+                    stageP.close();
+
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(
+                                getClass().getResource("/cinema/views/page_voir_plus_cinema.fxml"));
+                        Parent root = fxmlLoader.load();
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Voir plus");
+                        stage.setScene(new Scene(root));
+
+                        stage.initModality(Modality.APPLICATION_MODAL);
+
+                        stage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        stageP.show();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
     private void btnModif() {
         tcModif.setCellFactory(column -> new TableCell<Cinema, Void>() {
             private Button btn = new Button("Modifier");
@@ -105,6 +162,7 @@ public class ListeCinemaController extends MenuController implements Initializab
                         stage.show();
                     } catch (Exception e) {
                         e.printStackTrace();
+                        stageP.show();
                     }
                 });
             }

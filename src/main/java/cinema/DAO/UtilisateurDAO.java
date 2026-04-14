@@ -7,15 +7,26 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import cinema.BO.Utilisateur;
 
 public class UtilisateurDAO extends DAO<Utilisateur> {
+
+    public String password_hash(String password) {
+      return  BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public boolean checkPassword(String password, String hash) {
+       return BCrypt.checkpw(password, hash);
+    }
 
     @Override
     public boolean create(Utilisateur obj) {
         boolean result = false;
         try {
             String sql = "INSERT INTO utilisateur(login, mdp) VALUES(?,?)";
+            //obj.getMdp()
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setString(1, obj.getLogin());
             ps.setString(2, obj.getMdp());

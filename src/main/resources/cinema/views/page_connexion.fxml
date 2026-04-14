@@ -95,7 +95,7 @@
                                 <Insets left="80.0" top="10.0" />
                             </HBox.margin>
                         </Label>
-                        <PasswordField fx:id="tfMDP" prefHeight="25.3" prefWidth="262.0" text="jean">
+                        <PasswordField fx:id="tfMDP" prefHeight="25.3" prefWidth="262.0" text="">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="5.0" top="5.0" />
                             </HBox.margin>
