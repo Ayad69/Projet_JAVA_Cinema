@@ -12,6 +12,7 @@ import cinema.BO.Utilisateur;
 import cinema.DAO.FranchiseDAO;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.UtilisateurDAO;
+import cinema.util.WindowIcons;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +29,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// Affiche toutes les franchises dans un tableau (avec boutons modifier / supprimer selon ton FXML).
 public class ListeFranchiseController extends MenuController implements Initializable {
+
     @FXML
     private TableView<Franchise> tvFranchises;
 
@@ -51,10 +54,11 @@ public class ListeFranchiseController extends MenuController implements Initiali
     private Button bRetour;
 
     @Override
+    // Quand la page s'ouvre : on charge les franchises et on affiche les noms de gérants.
     public void initialize(URL location, ResourceBundle resources) {
         UtilisateurDAO gerantDAO = new UtilisateurDAO();
 
-        // Programmation fonctionnelle
+        // On utilise des maps / streams pour aller plus vite (cours de prog).
         // Collecteur de flux :
         // https://www.ionos.fr/digitalguide/sites-internet/developpement-web/les-collectors-de-streams-en-java/
         // toMap :
@@ -106,6 +110,7 @@ public class ListeFranchiseController extends MenuController implements Initiali
 
             // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
+            WindowIcons.apply(stage);
             stage.setTitle("Liste franchises");
             stage.setScene(new Scene(root));
 
@@ -139,6 +144,7 @@ public class ListeFranchiseController extends MenuController implements Initiali
                         modifierFranchiseCtrl.setName(nameUti);
 
                         Stage stage = new Stage();
+                        WindowIcons.apply(stage);
                         stage.setTitle("Modification franchise");
                         stage.setScene(new Scene(root));
 
@@ -166,11 +172,23 @@ public class ListeFranchiseController extends MenuController implements Initiali
             {
                 btn.setOnAction(event -> {
                     Franchise franchise = getTableView().getItems().get(getIndex());
-                    tvFranchises.getItems().remove(franchise);
-                    FranchiseDAO franchiseDAO = new FranchiseDAO();
-                    franchiseDAO.delete(franchise);
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(
+                                getClass().getResource("/cinema/views/popup_franchise.fxml"));
+                        Parent root = fxmlLoader.load();
+                        PopupFranchise popupFranchiseController = fxmlLoader.getController();
+                        popupFranchiseController.setFranchiseToDelete(franchise, tvFranchises);
+
+                        Stage stage = new Stage();
+                        WindowIcons.apply(stage);
+                        stage.setTitle("Pop-up");
+                        stage.setScene(new Scene(root));
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
-                // btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
             }
 
             @Override

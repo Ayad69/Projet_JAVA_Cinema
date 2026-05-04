@@ -25,7 +25,7 @@
       prefWidth="804.0"
       xmlns="http://javafx.com/javafx/22"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cinema.controllers.ListeCinemaController">
+      fx:controller="cinema.controllers.ListeSalleController">
     <children>
         <VBox layoutX="-1.0" prefHeight="78.0" prefWidth="804.0">
             <children>
@@ -99,20 +99,19 @@
                 </HBox>
             </children>
         </VBox>
-
-      
-        <TableView fx:id="tvCinema" layoutY="78.0" prefHeight="292.0" prefWidth="804.0">
+        
+        <TableView fx:id="tvSalle" layoutY="78.0" prefHeight="292.0" prefWidth="804.0">
             <columns>
-                <TableColumn fx:id="tcDenomination" prefWidth="200.0" text="Dénomination" />
-                <TableColumn fx:id="tcFranchise" prefWidth="150.0" text="Franchise" />
+                <TableColumn fx:id="tcNumero" prefWidth="70.0" text="N°" />
+                <TableColumn fx:id="tcDescription" prefWidth="200.0" text="Description" />
+                <TableColumn fx:id="tcNbPlaces" prefWidth="100.0" text="Places" />
+                <TableColumn fx:id="tcCinema" prefWidth="180.0" text="Cinéma" />
                 <TableColumn fx:id="tcVp" prefWidth="100.0" text="Voir plus" />
                 <TableColumn fx:id="tcModif" prefWidth="110.0" text="Modifier" />
                 <TableColumn fx:id="tcSupp" prefWidth="110.0" text="Supprimer" />
             </columns>
         </TableView>
 
-      
-        <!-- HBox harmonisé pour le bouton de retour -->
         <HBox alignment="CENTER"
               layoutY="383.0"
               prefHeight="115.0"
@@ -133,8 +132,6 @@
             </children>
         </HBox>
 
-      
-        <!-- Bande verte en bas pour harmonisation -->
         <Pane layoutX="0.0" layoutY="467.0" prefHeight="39.0" prefWidth="804.0" />
         <QuadCurve controlX="67.66667938232422"
                    controlY="-217.33334350585938"

@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import cinema.BO.Utilisateur;
 import cinema.DAO.UtilisateurDAO;
+import cinema.Session;
+import cinema.util.WindowIcons;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,15 +14,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// Page où l'utilisateur tape login + mot de passe avant d'entrer dans l'appli.
 public class ConnexionController implements Initializable {
 
+    // Message rouge si le login est faux (par exemple).
+    public Label messageError;
+
     @Override
+    // Au chargement de la page : pour l'instant on ne fait rien de spécial.
     public void initialize(URL location, ResourceBundle resources) {
 
     }
@@ -33,16 +40,23 @@ public class ConnexionController implements Initializable {
     private Button bConnexion;
 
     @FXML
+    // Quand on clique sur "Connexion" : on teste login/mdp puis on va à l'accueil si c'est bon.
     public void bConnexionClick(ActionEvent event) {
-        String truc = tfLogin.getText();
-        String chose = tfMDP.getText();
+       String login = tfLogin.getText();
+        String mdp = tfMDP.getText();
 
         UtilisateurDAO userDAO = new UtilisateurDAO();
-        // TODO
-        Utilisateur user = userDAO.authenticate(truc, chose);
-        showAccueil(user.getLogin());
+        Utilisateur user = userDAO.authenticate(login, mdp);
+        if (user != null) {
+            // On garde tout l'objet utilisateur pour les logs (id + login).
+            Session.setUtilisateur(user);
+            showAccueil(user.getNom());
+        }else{
+            messageError.setText("Login ou MDP incorrecte");
+        }
     }
 
+    // Ouvre la fenêtre d'accueil et donne le nom à afficher ("Bonjour ...").
     private void showAccueil(String name) {
         Stage stageP = (Stage) bConnexion.getScene().getWindow();
         // on ferme l'écran
@@ -61,9 +75,9 @@ public class ConnexionController implements Initializable {
 
             // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
+            WindowIcons.apply(stage);
             stage.setTitle("Accueil Gestion de franchises");
             stage.setScene(new Scene(root));
-            stage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
             // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
 
@@ -77,6 +91,7 @@ public class ConnexionController implements Initializable {
     }
 
     @FXML
+    // Petite fenêtre d'erreur (si tu branches un bouton dessus dans le FXML).
     private void showError() {
 
         try {
@@ -93,6 +108,7 @@ public class ConnexionController implements Initializable {
 
             // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
+            WindowIcons.apply(stage);
             stage.setTitle("Error Window");
             stage.setScene(new Scene(root));
 

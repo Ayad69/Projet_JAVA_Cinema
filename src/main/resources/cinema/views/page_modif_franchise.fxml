@@ -45,7 +45,7 @@
                             onAction="#bAjouterFranchiseClick" text="Ajouter une franchise" />
                     </items>
                 </Menu>
-                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                     <graphic>
                         <ImageView fitHeight="16" fitWidth="16">
                             <image>
@@ -55,9 +55,9 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="bListeCinema" mnemonicParsing="false"
-                            onAction="#bListeCinemaClick" text="Liste des sections" />
+                            onAction="#bListeCinemaClick" text="Liste des cinémas" />
                         <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false"
-                            onAction="#bAjouterCinemaClick" text="Ajouter une section" />
+                            onAction="#bAjouterCinemaClick" text="Ajouter un cinéma" />
                     </items>
                 </Menu>
                 <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
@@ -229,5 +229,10 @@
             strokeType="INSIDE"
             strokeWidth="0.0"
             width="508.0" />
+        <ImageView fitHeight="32.0" fitWidth="150.0" layoutX="560.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/cineforall_logo.png" />
+            </image>
+        </ImageView>
     </children>
 </Pane>

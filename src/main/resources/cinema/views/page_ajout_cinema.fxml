@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane stylesheets="@./css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinema.controllers.AjouterFranchiseController">
+<BorderPane stylesheets="@./css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinema.controllers.AjoutCinemaController">
 
     <top>
         <VBox spacing="0.0">
@@ -89,7 +89,7 @@
                 <Insets bottom="30" left="40" right="40" top="30" />
             </padding>
 
-            <Label styleClass="title-label" text="AJOUT D'UNE NOUVELLE FRANCHISE" />
+            <Label styleClass="title-label" text="AJOUT D'UN NOUVEAU CINEMA" />
 
             <GridPane alignment="CENTER" hgap="15" vgap="20">
 
@@ -98,25 +98,25 @@
                     <ColumnConstraints hgrow="ALWAYS" />
                 </columnConstraints>
 
-                <Label styleClass="form-label" text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label styleClass="form-label" text="Dénomination" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
                 <TextField fx:id="tfNomFranchise" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label styleClass="form-label" text="Adresse du siège social :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label styleClass="form-label" text="Adresse :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
                 <TextField fx:id="tfSiegeSocial" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label styleClass="form-label" text="Gérant :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label styleClass="form-label" text="Franchise :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
                 <ListView fx:id="lvGerantFranchise" prefHeight="120" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
 
             </GridPane>
-         <Label fx:id="message" />
+         <Label fx:id="message" text="" />
         </VBox>
     </center>
 

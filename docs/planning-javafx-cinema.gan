@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaFX - Gestion cinéma" company="" webLink="" view-date="2026-03-16" view-index="0" gantt-divider-location="400" resource-divider-location="300" version="3.3.3309" locale="fr">
+    <description><![CDATA[Planning aligné sur le tableau GanttProject (prise en main, anomalies, évolutions franchise/cinéma/salles, recette, démo, prod).]]></description>
+    <view zooming-state="default:6" id="gantt-chart">
+        <field id="tpd3" name="Name" width="300" order="0"/>
+        <field id="tpd4" name="Begin date" width="120" order="1"/>
+        <field id="tpd5" name="End date" width="120" order="2"/>
+        <field id="tpd6" name="Duration" width="80" order="3"/>
+        <field id="tpd7" name="Completion" width="80" order="4"/>
+        <option id="taskLabelRight" value="name"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="200" order="0"/>
+    </view>
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+            <taskproperty id="tpc0" name="Is done" type="custom" valuetype="boolean" defaultvalue="false">
+                <simple-select select="completion=100"/>
+            </taskproperty>
+        </taskproperties>
+        <task id="0" uid="c0000000000000000000000000000000" name="Prise en main du projet" color="#99ccff" meeting="false" start="2026-03-16" duration="1" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <depend id="1" type="2" difference="0" hardness="Strong"/>
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+        <task id="1" uid="c0000000000000000000000000000001" name="Listing des anomalies" color="#99ccff" meeting="false" start="2026-03-17" duration="3" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+        <task id="2" uid="c0000000000000000000000000000002" name="Corrections" color="#99ccff" meeting="false" start="2026-03-20" duration="17" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+        <task id="3" uid="c0000000000000000000000000000003" name="Démo 1er version" color="#000000" meeting="true" start="2026-04-14" duration="0" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <depend id="4" type="2" difference="0" hardness="Strong"/>
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+        <task id="4" uid="c0000000000000000000000000000004" name="Evolutions" color="#99ccff" meeting="false" start="2026-04-15" duration="8" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <customproperty taskproperty-id="tpc0" value="false"/>
+            <task id="5" uid="c0000000000000000000000000000005" name="Partie franchise" color="#99ccff" meeting="false" start="2026-04-15" duration="3" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+                <customproperty taskproperty-id="tpc0" value="false"/>
+            </task>
+            <task id="6" uid="c0000000000000000000000000000006" name="Partie cinéma" color="#99ccff" meeting="false" start="2026-04-15" duration="5" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+                <customproperty taskproperty-id="tpc0" value="false"/>
+            </task>
+            <task id="7" uid="c0000000000000000000000000000007" name="Partie salles" color="#99ccff" meeting="false" start="2026-04-20" duration="4" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+                <customproperty taskproperty-id="tpc0" value="false"/>
+            </task>
+            <task id="8" uid="c0000000000000000000000000000008" name="autres" color="#99ccff" meeting="false" start="2026-04-22" duration="3" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+                <depend id="9" type="2" difference="0" hardness="Strong"/>
+                <customproperty taskproperty-id="tpc0" value="false"/>
+            </task>
+        </task>
+        <task id="9" uid="c0000000000000000000000000000009" name="Recette" color="#99ccff" meeting="false" start="2026-04-27" duration="5" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+        <task id="10" uid="c000000000000000000000000000000a" name="Démo client" color="#000000" meeting="true" start="2026-05-04" duration="0" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+        <task id="11" uid="c000000000000000000000000000000b" name="Déploiement en prod" color="#666666" meeting="false" start="2026-05-04" duration="3" complete="0" expand="true" cost-manual-value="0" cost-calculated="false">
+            <customproperty taskproperty-id="tpc0" value="false"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="0" name="Développeur"/>
+    </roles>
+</project>

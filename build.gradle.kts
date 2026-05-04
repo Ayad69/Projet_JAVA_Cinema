@@ -14,7 +14,7 @@ plugins {
 java {
     // https://docs.gradle.org/current/userguide/java_plugin.html#sec:java-extension
     toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -46,6 +46,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     // BDD
     implementation("org.postgresql:postgresql:42.7.4")
+    implementation("org.mindrot:jbcrypt:0.4")
 }
 
 
