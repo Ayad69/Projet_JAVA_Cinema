@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -25,9 +26,9 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="cinema.controllers.ListeFranchiseController">
     <children>
-        <VBox layoutX="-1.0" prefHeight="48.0" prefWidth="873.0">
+        <VBox layoutX="-1.0" prefHeight="78.0" prefWidth="873.0">
             <children>
-                <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="866.0">
+                <MenuBar prefHeight="26.0" prefWidth="873.0">
                     <menus>
                         <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
                             <graphic>
@@ -42,7 +43,7 @@
                                 <MenuItem fx:id="bAjouterFranchise" mnemonicParsing="false" onAction="#bAjouterFranchiseClick" text="Ajouter une franchise" />
                             </items>
                         </Menu>
-                        <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                        <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                             <graphic>
                                 <ImageView fitHeight="16" fitWidth="16">
                                     <image>
@@ -51,8 +52,8 @@
                                 </ImageView>
                             </graphic>
                             <items>
-                                <MenuItem fx:id="bListeCinema" mnemonicParsing="false" onAction="#bListeCinemaClick" text="Liste des sections" />
-                                <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false" onAction="#bAjouterCinemaClick" text="Ajouter une section" />
+                                <MenuItem fx:id="bListeCinema" mnemonicParsing="false" onAction="#bListeCinemaClick" text="Liste des cinémas" />
+                                <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false" onAction="#bAjouterCinemaClick" text="Ajouter un cinéma" />
                             </items>
                         </Menu>
                         <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
@@ -64,8 +65,8 @@
                                 </ImageView>
                             </graphic>
                             <items>
-                                <MenuItem fx:id="bListeSalle" mnemonicParsing="false" onAction="#bListeSalleClick" text="Liste cours" />
-                                <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter un cours" />
+                                <MenuItem fx:id="bListeSalle" mnemonicParsing="false" onAction="#bListeSalleClick" text="Liste salles" />
+                                <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter une salle" />
                             </items>
                         </Menu>
                         <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
@@ -83,22 +84,34 @@
                         </Menu>
                     </menus>
                 </MenuBar>
+                <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="873.0" style="-fx-background-color: #2a2657;">
+                    <padding>
+                        <Insets bottom="4.0" left="8.0" right="12.0" top="2.0" />
+                    </padding>
+                    <children>
+                        <ImageView fitHeight="30.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/cineforall_logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
             </children>
         </VBox>
         
-        <TableView fx:id="tvFranchises" layoutY="50.0" prefHeight="292.0" prefWidth="873.0">
+        <TableView fx:id="tvFranchises" layoutY="78.0" prefHeight="292.0" prefWidth="873.0">
             <columns>
-                <TableColumn fx:id="tcNomFranchise" prefWidth="150.0" text="tcNomFranchise" />
-                <TableColumn fx:id="tcSiegeSocial" prefWidth="160.0" text="tcSiegeSocial" />
-                <TableColumn fx:id="tcGerant" prefWidth="210.0" text="tcGerant" />
-                <TableColumn fx:id="tcSupprimer" prefWidth="110.0" text="tcSupprimer" />
-                <TableColumn fx:id="tcModifier" prefWidth="110.0" text="tcModifier" />
+                <TableColumn fx:id="tcNomFranchise" prefWidth="150.0" text="Nom Franchise" />
+                <TableColumn fx:id="tcSiegeSocial" prefWidth="160.0" text="Siege Social" />
+                <TableColumn fx:id="tcGerant" prefWidth="210.0" text="Gerant" />
+                <TableColumn fx:id="tcSupprimer" prefWidth="110.0" text="Supprimer" />
+                <TableColumn fx:id="tcModifier" prefWidth="110.0" text="Modifier" />
             </columns>
         </TableView>
         
         <!-- HBox pour le bouton de retour -->
         <HBox alignment="CENTER"
-              layoutY="355.0"
+              layoutY="383.0"
               prefHeight="115.0"
               prefWidth="873.0"
               spacing="20.0">
@@ -118,14 +131,14 @@
         </HBox>
                 
         <!-- Bande verte en bas pour harmonisation -->
-        <Pane layoutX="0.0" layoutY="439.0" prefHeight="39.0" prefWidth="804.0" />
+        <Pane layoutX="0.0" layoutY="467.0" prefHeight="39.0" prefWidth="873.0" />
         <QuadCurve controlX="18.33334732055664"
                    controlY="-216.0"
                    endX="318.33331298828125"
                    endY="-15.000030517578125"
                    fill="#3A3AB6"
                    layoutX="-60.0"
-                   layoutY="493.0"
+                   layoutY="521.0"
                    startX="-152.3333282470703"
                    startY="-15.000030517578125"
                    stroke="BLACK"
@@ -137,7 +150,7 @@
                    endY="-16.000030517578125"
                    fill="#3A3AB6"
                    layoutX="788.0"
-                   layoutY="494.0"
+                   layoutY="522.0"
                    startX="-220.66668701171875"
                    startY="-15.0"
                    stroke="BLACK"
