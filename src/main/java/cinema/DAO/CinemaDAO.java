@@ -8,9 +8,15 @@ import java.util.List;
 
 import cinema.BO.Cinema;
 
+// Toutes les requêtes SQL pour la table "cinema" (ajouter, supprimer, modifier, lire...).
 public class CinemaDAO extends DAO<Cinema> {
 
+    private void consigner(String action, Cinema obj, Integer idPourLog, String detail) {
+        new ActiviteLogDAO().insertPourUtilisateurConnecte(action, "CINEMA", idPourLog, detail);
+    }
+
     @Override
+    // Ajoute un cinéma dans la base.
     public boolean create(Cinema obj) {
         boolean result = false;
         try {
@@ -23,6 +29,10 @@ public class CinemaDAO extends DAO<Cinema> {
             int rows = preparedStatement.executeUpdate();
             if (rows > 0) {
                 result = true;
+                Integer idLog = obj.getIdCinema() > 0 ? obj.getIdCinema() : null;
+                consigner("AJOUT", obj, idLog,
+                        "denomination=" + obj.getDenomination() + ", ville=" + obj.getVille()
+                                + ", id_franchise=" + obj.getIdFranchise());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,6 +41,7 @@ public class CinemaDAO extends DAO<Cinema> {
     }
 
     @Override
+    // Supprime un cinéma avec son id.
     public boolean delete(Cinema obj) {
         boolean result = false;
         String query = "DELETE FROM cinema WHERE id_cinema = ?;";
@@ -38,6 +49,9 @@ public class CinemaDAO extends DAO<Cinema> {
         try (PreparedStatement preparedStatement = this.connect.prepareStatement(query)) {
             preparedStatement.setInt(1, obj.getIdCinema());
             result = preparedStatement.executeUpdate() > 0;
+            if (result) {
+                consigner("SUPPRESSION", obj, obj.getIdCinema(), "denomination=" + obj.getDenomination());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -46,6 +60,7 @@ public class CinemaDAO extends DAO<Cinema> {
     }
 
     @Override
+    // Met à jour les infos d'un cinéma déjà existant.
     public boolean update(Cinema obj) {
         boolean result = false;
         String query = "UPDATE cinema SET denomination = ?, adresse = ?, ville = ?, id_franchise = ? WHERE id_cinema = ?;";
@@ -59,6 +74,9 @@ public class CinemaDAO extends DAO<Cinema> {
             int rows = preparedStatement.executeUpdate();
             if (rows > 0) {
                 result = true;
+                consigner("MODIFICATION", obj, obj.getIdCinema(),
+                        "denomination=" + obj.getDenomination() + ", adresse=" + obj.getAdresse()
+                                + ", ville=" + obj.getVille() + ", id_franchise=" + obj.getIdFranchise());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,6 +85,7 @@ public class CinemaDAO extends DAO<Cinema> {
     }
 
     @Override
+    // Cherche UN cinéma par son id_cinema.
     public Cinema find(int id) {
         Cinema cinema = null;
         String query = "SELECT * FROM cinema WHERE id_cinema = ?;";
@@ -89,6 +108,7 @@ public class CinemaDAO extends DAO<Cinema> {
     }
 
     @Override
+    // Récupère tous les cinémas (pour remplir un tableau par exemple).
     public List<Cinema> findAll() {
         List<Cinema> cinemas = new ArrayList<Cinema>();
         String query = "SELECT * FROM cinema;";

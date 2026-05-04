@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.QuadCurve?>
-<?import javafx.scene.text.Font?>
-
-
-<Pane maxHeight="-Infinity"
-      maxWidth="-Infinity"
-      minHeight="-Infinity"
-      minWidth="-Infinity"
-      prefHeight="478.0"
-      prefWidth="729.0"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cinema.controllers.AccueilController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinema.controllers.AccueilController">
     <children>
         <VBox layoutX="-1.0" prefHeight="48.0" prefWidth="729.0">
             <children>
@@ -29,7 +14,7 @@
                     <menus>
                         <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
                             <graphic>
-                                <ImageView fitWidth="16" fitHeight="16">
+                                <ImageView fitHeight="16" fitWidth="16">
                                     <image>
                                         <Image url="@../images/franchise_64x64.png" />
                                     </image>
@@ -42,7 +27,7 @@
                         </Menu>
                         <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                             <graphic>
-                                <ImageView fitWidth="16" fitHeight="16">
+                                <ImageView fitHeight="16" fitWidth="16">
                                     <image>
                                         <Image url="@../images/cinema_32x32.png" />
                                     </image>
@@ -55,20 +40,20 @@
                         </Menu>
                         <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
                             <graphic>
-                                <ImageView fitWidth="16" fitHeight="16">
+                                <ImageView fitHeight="16" fitWidth="16">
                                     <image>
                                         <Image url="@../images/salle_32x32.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                             <items>
-                                <MenuItem fx:id="bListeSalle" mnemonicParsing="false" onAction="#bListeSalleClick" text="Liste cours" />
-                                <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter un cours" />
+                                <MenuItem fx:id="bListeSalle" mnemonicParsing="false" onAction="#bListeSalleClick" text="Liste salles" />
+                                <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter une salle" />
                             </items>
                         </Menu>
                         <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
                             <graphic>
-                                <ImageView fitWidth="16" fitHeight="16">
+                                <ImageView fitHeight="16" fitWidth="16">
                                     <image>
                                         <Image url="@../images/info.png" />
                                     </image>
@@ -83,44 +68,17 @@
                 </MenuBar>
             </children>
         </VBox>
-        <QuadCurve controlX="-18.05954933166504"
-                   controlY="-94.0"
-                   endX="683.0"
-                   endY="178.0"
-                   fill="#3A3AB6"
-                   layoutX="50.0"
-                   layoutY="300.0"
-                   startX="-328.0"
-                   startY="178.00003051757812"
-                   stroke="BLACK"
-                   strokeType="INSIDE"
-                   strokeWidth="0.0" />
-        <Label fx:id="bienvenue"
-               alignment="TOP_CENTER"
-               layoutY="172.0"
-               prefHeight="40.0"
-               prefWidth="729.0"
-               text="BIENVENUE"
-               textFill="#024010">
+        <QuadCurve controlX="-18.05954933166504" controlY="-94.0" endX="683.0" endY="178.0" fill="#3A3AB6" layoutX="50.0" layoutY="300.0" startX="-328.0" startY="178.00003051757812" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+        <Label fx:id="bienvenue" alignment="TOP_CENTER" layoutY="172.0" prefHeight="40.0" prefWidth="729.0" text="BIENVENUE" textFill="#024010">
             <font>
                 <Font name="Franklin Gothic Medium" size="40.0" />
             </font>
         </Label>
-        <Label alignment="TOP_CENTER"
-               layoutX="-1.0"
-               layoutY="219.0"
-               prefHeight="40.0"
-               prefWidth="729.0"
-               text="dans l'application de gestion de franchises"
-               textFill="#3A3AB6">
+        <Label alignment="TOP_CENTER" layoutX="-1.0" layoutY="219.0" prefHeight="40.0" prefWidth="729.0" text="dans l'application de gestion de franchises" textFill="#3A3AB6">
             <font>
                 <Font name="Franklin Gothic Medium Cond" size="26.0" />
             </font>
         </Label>
-        <ImageView fitHeight="89.0" fitWidth="92.0" layoutX="41.0" layoutY="366.0">
-            <image>
-                <Image url="@../images/cinema_logo.png" />
-            </image>
-        </ImageView>
+      <Label fx:id="labelError" layoutX="310.0" layoutY="313.0" text="" textFill="RED" />
     </children>
 </Pane>

@@ -1,5 +1,7 @@
 package cinema.BO;
 
+// Représente une personne qui peut se connecter (login + mot de passe, nom, prénom...).
+// C'est la table utilisateur en version objet Java.
 public class Utilisateur {
 
     private int idUtilisateur;
@@ -57,5 +59,9 @@ public class Utilisateur {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String toString(){
+        return this.nom + " " + this.prenom;
     }
 }

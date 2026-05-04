@@ -52,4 +52,11 @@ public class Cinema {
         this.idFranchise = idFranchise;
     }
 
+    @Override
+    public String toString() {
+        return "Cinéma{" +
+                "nom='" + denomination + '\'' +
+                ", franchise=" + idFranchise +
+                '}';
+    }
 }
