@@ -29,31 +29,33 @@ endif
 :Ouvrir écran Accueil;
 
 |Utilisateur|
-while (Action menu != « Quitter » ?) is (oui)
-  :Sélectionner une entrée du menu\n(liste / ajout franchise, cinéma, salle, accueil, quitter);
+while (Session ouverte ?) is (oui)
+  :Choisir une entrée du menu\n(franchises, cinémas, salles, accueil, quitter);
 
-  |Système|
-  if (Écran franchises ?) then (oui)
-    :Charger FXML liste ou ajout / modif franchise;
-    :DAO Franchise (lecture / création / mise à jour / suppression);\nconsigner activité si prévu;
-  elseif (Écran cinémas ?) then (oui)
-    :Charger FXML liste ou ajout / modif cinéma ou « Voir plus »;
-    :DAO Cinéma (+ salles affichées au besoin);
-  elseif (Écrans salles ?) then (oui)
-    :Charger FXML liste ou ajout / modif salle;
-    :DAO Salle;
-  elseif (Accueil ?) then (oui)
-    :Charger page_accueil.fxml;
-  else (autre)
-    :—;
+  if (Quitter ?) then (oui)
+    |Système|
+    :Session.clear();
+    break
+  else (non)
+    |Système|
+    if (Franchises : liste / ajout / modif ?) then (oui)
+      :Charger FXML + FranchiseDAO;\nconsigner activité si applicable;
+    elseif (Cinémas : liste / ajout / modif / voir plus ?) then (oui)
+      :Charger FXML + CinemaDAO\n(+ SalleDAO au besoin);
+    elseif (Salles : liste / ajout / modif ?) then (oui)
+      :Charger FXML + SalleDAO;
+    elseif (Accueil ?) then (oui)
+      :Charger page_accueil.fxml;
+    else (autre)
+      :—;
+    endif
+    |Utilisateur|
+    :Utiliser l'écran puis revenir au menu;
   endif
 
-  |Utilisateur|
-  :Utiliser l'écran puis fermer ou revenir au menu;
 endwhile (non)
 
 |Système|
-:Session.clear();
 :Platform.exit();
 
 |Utilisateur|
