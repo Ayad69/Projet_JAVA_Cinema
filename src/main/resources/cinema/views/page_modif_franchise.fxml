@@ -229,5 +229,10 @@
             strokeType="INSIDE"
             strokeWidth="0.0"
             width="508.0" />
+        <ImageView fitHeight="32.0" fitWidth="150.0" layoutX="560.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/cineforall_logo.png" />
+            </image>
+        </ImageView>
     </children>
 </Pane>

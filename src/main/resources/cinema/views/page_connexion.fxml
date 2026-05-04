@@ -24,7 +24,7 @@
                         </Label>
                         <ImageView fitHeight="67.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/cinema_logo.png" />
+                                <Image url="@../images/cineforall_logo.png" />
                             </image>
                         </ImageView>
 

@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  */
 public final class WindowIcons {
 
-    private static final String LOGO = "/cinema/images/cinema_32x32.png";
+    private static final String LOGO = "/cinema/images/cineforall_logo.png";
 
     private WindowIcons() {
     }

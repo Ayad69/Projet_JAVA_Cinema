@@ -25,16 +25,30 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
        return BCrypt.checkpw(password, hash);
     }
 
+    private static boolean looksLikeBcryptHash(String stored) {
+        return stored != null
+                && (stored.startsWith("$2a$") || stored.startsWith("$2b$") || stored.startsWith("$2y$"));
+    }
+
+    /** Mot de passe à enregistrer : hash BCrypt si ce n’est pas déjà un hash. */
+    private String hashForStorage(String plainOrHash) {
+        if (plainOrHash == null) {
+            return null;
+        }
+        return looksLikeBcryptHash(plainOrHash) ? plainOrHash : password_hash(plainOrHash);
+    }
+
     @Override
-    // Crée un utilisateur (attention : le code actuel mélange peut-être les colonnes nom/login).
+    // Crée un utilisateur (nom, prénom, login, mdp hashé BCrypt).
     public boolean create(Utilisateur obj) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO utilisateur(nom,prenom,login, mdp) VALUES(?,?,?,?)";
-            //obj.getMdp()
+            String sql = "INSERT INTO utilisateur (nom, prenom, login, mdp) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = this.connect.prepareStatement(sql);
-            ps.setString(1, obj.getLogin());
-            ps.setString(2, password_hash(obj.getMdp()));
+            ps.setString(1, obj.getNom());
+            ps.setString(2, obj.getPrenom());
+            ps.setString(3, obj.getLogin());
+            ps.setString(4, hashForStorage(obj.getMdp()));
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 result = true;
@@ -69,10 +83,10 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     public boolean update(Utilisateur obj) {
         boolean result = false;
         try {
-            String sql = "UPDATE Utilisateur SET login=?, mdp=? WHERE id_utilisateur = ?";
+            String sql = "UPDATE utilisateur SET login = ?, mdp = ? WHERE id_utilisateur = ?";
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setString(1, obj.getLogin());
-            ps.setString(2, obj.getMdp());
+            ps.setString(2, hashForStorage(obj.getMdp()));
             ps.setInt(3, obj.getIdUtilisateur());
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
@@ -133,21 +147,36 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return user;
     }
 
-    // Vérifie login + mot de passe (comme sur l'écran connexion).
+    // Vérifie login + mot de passe : comparaison avec le hash BCrypt en base (rétrocompat mot de passe en clair).
     public Utilisateur authenticate(String login, String password) {
-        Utilisateur user = null;
+        if (login == null || password == null) {
+            return null;
+        }
         try {
-            String sql = "SELECT * FROM utilisateur WHERE login =? AND mdp=?";
+            String sql = "SELECT * FROM utilisateur WHERE login = ?";
             PreparedStatement ps = this.connect.prepareStatement(sql);
-            ps.setString(1, login);
-            ps.setString(2, password);
+            ps.setString(1, login.trim());
             ResultSet result = ps.executeQuery();
-            if (result.next()) {
-                user = hydrate(result);
+            if (!result.next()) {
+                return null;
             }
+            String stored = result.getString("mdp");
+            boolean ok;
+            if (looksLikeBcryptHash(stored)) {
+                try {
+                    ok = checkPassword(password, stored);
+                } catch (IllegalArgumentException ex) {
+                    ok = false;
+                }
+            } else {
+                ok = password.equals(stored);
+            }
+            if (!ok) {
+                return null;
+            }
+            return hydrate(result);
         } catch (SQLException e) {
             return null;
         }
-        return user;
     }
 }

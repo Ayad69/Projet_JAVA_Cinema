@@ -73,7 +73,7 @@ CREATE INDEX idx_salle_cinema ON salle(id_cinema);
 
 CREATE INDEX idx_franchise_gerant ON franchise(id_gerant);
 
--- 1. Insertion des Utilisateurs (Gérants potentiels)
+-- 1. Insertion des Utilisateurs (Gérants potentiels) — mots de passe = BCrypt (plain : jean / alice / lucas)
 INSERT INTO
 	utilisateur (nom, prenom, login, mdp)
 VALUES
@@ -81,19 +81,19 @@ VALUES
 		'Dupont',
 		'Jean',
 		'jean.dupont@email.com',
-		'jean'
+		'$2a$10$54YeUjKOCGlyCUtQiKeFyuUWfdy/Plle2kprKldrZv0hDFQqbV2Ba'
 	),
 	(
 		'Martin',
 		'Alice',
 		'alice.martin@email.com',
-		'alice'
+		'$2a$10$7wS/fPn5KWh9FNvLXYHwT.3rT//Uq.sruvU1hAIE8XSvp6SGRWgO2'
 	),
 	(
 		'Bernard',
 		'Lucas',
 		'lucas.bernard@email.com',
-		'lucas'
+		'$2a$10$LqkIpqi4jXIo3Uz4cGaKZuc8jALctihxWkvUv85qzJq8u1qcS6DoG'
 	);
 
 -- 2. Insertion des Franchises

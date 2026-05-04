@@ -137,5 +137,10 @@
         </Pane>
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#01a321" height="5.0" layoutX="101.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="508.0" />
+        <ImageView AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0" fitHeight="32.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/cineforall_logo.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

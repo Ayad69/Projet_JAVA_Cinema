@@ -8,6 +8,8 @@
 <BorderPane stylesheets="@./css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinema.controllers.AjouterFranchiseController">
 
     <top>
+        <VBox spacing="0.0">
+            <children>
         <MenuBar>
             <menus>
                 <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
@@ -65,6 +67,20 @@
 
             </menus>
         </MenuBar>
+                <HBox alignment="CENTER_RIGHT" prefHeight="36.0" style="-fx-background-color: #2a2657;">
+                    <padding>
+                        <Insets bottom="4.0" left="8.0" right="12.0" top="2.0" />
+                    </padding>
+                    <children>
+                        <ImageView fitHeight="30.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/cineforall_logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
     </top>
 
     <center>

@@ -79,11 +79,6 @@
                 <Font name="Franklin Gothic Medium Cond" size="26.0" />
             </font>
         </Label>
-        <ImageView fitHeight="89.0" fitWidth="92.0" layoutX="41.0" layoutY="366.0">
-            <image>
-                <Image url="@../images/cinema_logo.png" />
-            </image>
-        </ImageView>
       <Label fx:id="labelError" layoutX="310.0" layoutY="313.0" text="" textFill="RED" />
     </children>
 </Pane>

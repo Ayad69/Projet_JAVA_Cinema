@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -25,9 +26,9 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="cinema.controllers.ListeFranchiseController">
     <children>
-        <VBox layoutX="-1.0" prefHeight="48.0" prefWidth="873.0">
+        <VBox layoutX="-1.0" prefHeight="78.0" prefWidth="873.0">
             <children>
-                <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="866.0">
+                <MenuBar prefHeight="26.0" prefWidth="873.0">
                     <menus>
                         <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
                             <graphic>
@@ -83,10 +84,22 @@
                         </Menu>
                     </menus>
                 </MenuBar>
+                <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="873.0" style="-fx-background-color: #2a2657;">
+                    <padding>
+                        <Insets bottom="4.0" left="8.0" right="12.0" top="2.0" />
+                    </padding>
+                    <children>
+                        <ImageView fitHeight="30.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/cineforall_logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
             </children>
         </VBox>
         
-        <TableView fx:id="tvFranchises" layoutY="50.0" prefHeight="292.0" prefWidth="873.0">
+        <TableView fx:id="tvFranchises" layoutY="78.0" prefHeight="292.0" prefWidth="873.0">
             <columns>
                 <TableColumn fx:id="tcNomFranchise" prefWidth="150.0" text="Nom Franchise" />
                 <TableColumn fx:id="tcSiegeSocial" prefWidth="160.0" text="Siege Social" />
@@ -98,7 +111,7 @@
         
         <!-- HBox pour le bouton de retour -->
         <HBox alignment="CENTER"
-              layoutY="355.0"
+              layoutY="383.0"
               prefHeight="115.0"
               prefWidth="873.0"
               spacing="20.0">
@@ -118,14 +131,14 @@
         </HBox>
                 
         <!-- Bande verte en bas pour harmonisation -->
-        <Pane layoutX="0.0" layoutY="439.0" prefHeight="39.0" prefWidth="804.0" />
+        <Pane layoutX="0.0" layoutY="467.0" prefHeight="39.0" prefWidth="873.0" />
         <QuadCurve controlX="18.33334732055664"
                    controlY="-216.0"
                    endX="318.33331298828125"
                    endY="-15.000030517578125"
                    fill="#3A3AB6"
                    layoutX="-60.0"
-                   layoutY="493.0"
+                   layoutY="521.0"
                    startX="-152.3333282470703"
                    startY="-15.000030517578125"
                    stroke="BLACK"
@@ -137,7 +150,7 @@
                    endY="-16.000030517578125"
                    fill="#3A3AB6"
                    layoutX="788.0"
-                   layoutY="494.0"
+                   layoutY="522.0"
                    startX="-220.66668701171875"
                    startY="-15.0"
                    stroke="BLACK"

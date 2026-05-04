@@ -2,6 +2,11 @@
     -fx-font-family: "System";
 }
 
+/* Bandeau sous le menu : logo CineForAll (fond proche du visuel marque) */
+.brand-bar {
+    -fx-background-color: #2a2657;
+}
+
 .content {
     -fx-background-color: white;
 }
