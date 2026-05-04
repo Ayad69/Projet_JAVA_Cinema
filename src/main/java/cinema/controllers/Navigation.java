@@ -8,20 +8,25 @@ import java.util.Stack;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import cinema.util.WindowIcons;
+
+// Utilitaire pour changer de page FXML sans tout recopier (historique + paramètres).
+// Pas obligatoire si tu ouvres tout avec FXMLLoader à la main comme dans MenuController.
 public class Navigation {
 
     private static Stage primaryStage;
     private static final Stack<String> historique = new Stack<>();
     private static final Map<String, Object> params = new HashMap<>();
 
+    // Garde la fenêtre principale pour pouvoir changer sa scène plus tard.
     public static void setPrimaryStage(Stage stage) {
         primaryStage = stage;
     }
 
+    // Charge un fichier FXML et l'affiche dans la fenêtre principale.
     public static void goTo(String fxmlPath) {
         try {
             if (primaryStage != null) {
@@ -34,10 +39,7 @@ public class Navigation {
                 Parent root = FXMLLoader.load(Navigation.class.getResource(fxmlPath));
                 primaryStage.setScene(new Scene(root));
 
-                // ✅ Réassigner l’icône
-                primaryStage.getIcons().clear();
-                primaryStage.getIcons()
-                        .add(new Image(Navigation.class.getResourceAsStream("/cinema/images/cinema_logo.png")));
+                WindowIcons.apply(primaryStage);
 
                 primaryStage.show();
             }
@@ -55,12 +57,9 @@ public class Navigation {
         try {
             Parent root = FXMLLoader.load(Navigation.class.getResource(fxmlPath));
             Stage newStage = new Stage();
+            WindowIcons.apply(newStage);
             newStage.setScene(new Scene(root));
             newStage.setResizable(false);
-
-            // ✅ Ajouter l’icône à la nouvelle fenêtre
-            newStage.getIcons()
-                    .add(new Image(Navigation.class.getResourceAsStream("/cinema/images/cinema_logo.png")));
 
             newStage.show();
 
@@ -77,6 +76,7 @@ public class Navigation {
         goTo(fxmlPath, currentWindow);
     }
 
+    // Revient à la page précédente (grâce à la pile "historique").
     public static void goBack() {
         if (historique.size() >= 2) {
             historique.pop();

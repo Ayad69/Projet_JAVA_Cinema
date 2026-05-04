@@ -9,9 +9,15 @@ import java.util.List;
 
 import cinema.BO.Franchise;
 
+// Tout ce qui touche la table franchise (SQL dedans).
 public class FranchiseDAO extends DAO<Franchise> {
 
+    private void consigner(String action, Franchise obj, Integer idPourLog, String detail) {
+        new ActiviteLogDAO().insertPourUtilisateurConnecte(action, "FRANCHISE", idPourLog, detail);
+    }
+
     @Override
+    // Ajoute une franchise.
     public boolean create(Franchise obj) {
         boolean controle = false;
         try {
@@ -24,6 +30,10 @@ public class FranchiseDAO extends DAO<Franchise> {
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 controle = true;
+                Integer idLog = obj.getIdFranchise() > 0 ? obj.getIdFranchise() : null;
+                consigner("AJOUT", obj, idLog,
+                        "nom_franchise=" + obj.getNomFranchise() + ", siege=" + obj.getSiegeSocial()
+                                + ", id_gerant=" + obj.getIdGerant());
             }
 
         } catch (SQLException e) {
@@ -32,6 +42,7 @@ public class FranchiseDAO extends DAO<Franchise> {
         return controle;
     }
 
+    // Compte combien de franchises ont ce gérant (utilisé dans l'écran liste cinéma pour la suppression).
     public Integer getNbFranchiseByIdGerant(int idGerant) {
         int result = 0;
         try {
@@ -49,6 +60,7 @@ public class FranchiseDAO extends DAO<Franchise> {
     }
 
     @Override
+    // Supprime une franchise.
     public boolean delete(Franchise obj) {
         boolean controle = false;
         try {
@@ -59,6 +71,8 @@ public class FranchiseDAO extends DAO<Franchise> {
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
                 controle = true;
+                consigner("SUPPRESSION", obj, obj.getIdFranchise(),
+                        "nom_franchise=" + obj.getNomFranchise());
             }
 
         } catch (SQLException e) {
@@ -68,6 +82,7 @@ public class FranchiseDAO extends DAO<Franchise> {
     }
 
     @Override
+    // Modifie une franchise.
     public boolean update(Franchise obj) {
         boolean controle = false;
         try {
@@ -81,6 +96,9 @@ public class FranchiseDAO extends DAO<Franchise> {
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 controle = true;
+                consigner("MODIFICATION", obj, obj.getIdFranchise(),
+                        "nom_franchise=" + obj.getNomFranchise() + ", siege=" + obj.getSiegeSocial()
+                                + ", id_gerant=" + obj.getIdGerant());
             }
 
         } catch (SQLException e) {
@@ -90,6 +108,7 @@ public class FranchiseDAO extends DAO<Franchise> {
     }
 
     @Override
+    // Trouve une franchise par id.
     public Franchise find(int id) {
         Franchise franchise = null;
         String query = "SELECT * FROM franchise WHERE id_franchise = ?;";
@@ -107,6 +126,7 @@ public class FranchiseDAO extends DAO<Franchise> {
     }
 
     @Override
+    // Liste toutes les franchises (attention : peut renvoyer null si erreur SQL).
     public List<Franchise> findAll() {
         List<Franchise> mesFranchises = new ArrayList<>();
         Franchise franchise;
@@ -126,6 +146,7 @@ public class FranchiseDAO extends DAO<Franchise> {
         return mesFranchises;
     }
 
+    // Franchises d'un seul gérant (id utilisateur).
     public List<Franchise> getAllByGerant(int idSection) {
         List<Franchise> mesFranchises = new ArrayList<>();
         Franchise franchise;
@@ -144,6 +165,7 @@ public class FranchiseDAO extends DAO<Franchise> {
         return mesFranchises;
     }
 
+    // Transforme une ligne SQL (ResultSet) en objet Franchise Java.
     private Franchise hydrate(ResultSet resultSet) throws SQLException {
         return new Franchise(resultSet.getInt("id_franchise"),
                 resultSet.getString("nom_franchise"),

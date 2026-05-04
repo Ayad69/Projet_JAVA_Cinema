@@ -11,25 +11,30 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import cinema.BO.Utilisateur;
 
+// Gère les utilisateurs : login, mot de passe, liste, etc.
+// On utilise BCrypt pour ne pas stocker le mot de passe en clair (en théorie — selon ce qu'on enregistre en base).
 public class UtilisateurDAO extends DAO<Utilisateur> {
 
+    // Hash = version "cryptée" du mot de passe pour la base de données.
     public String password_hash(String password) {
       return  BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
+    // Compare un mot de passe tapé avec le hash stocké.
     public boolean checkPassword(String password, String hash) {
        return BCrypt.checkpw(password, hash);
     }
 
     @Override
+    // Crée un utilisateur (attention : le code actuel mélange peut-être les colonnes nom/login).
     public boolean create(Utilisateur obj) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO utilisateur(login, mdp) VALUES(?,?)";
+            String sql = "INSERT INTO utilisateur(nom,prenom,login, mdp) VALUES(?,?,?,?)";
             //obj.getMdp()
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setString(1, obj.getLogin());
-            ps.setString(2, obj.getMdp());
+            ps.setString(2, password_hash(obj.getMdp()));
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 result = true;
@@ -41,6 +46,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
 
     @Override
+    // Supprime un utilisateur.
     public boolean delete(Utilisateur obj) {
         boolean result = false;
         try {
@@ -59,6 +65,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
 
     @Override
+    // Met à jour login / mdp.
     public boolean update(Utilisateur obj) {
         boolean result = false;
         try {
@@ -77,6 +84,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return result;
     }
 
+    // Une ligne SQL -> un objet Utilisateur.
     private Utilisateur hydrate(ResultSet resultSet) throws SQLException {
         return new Utilisateur(resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
@@ -86,6 +94,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
 
     @Override
+    // Tous les utilisateurs.
     public List<Utilisateur> findAll() {
         List<Utilisateur> mesUtilisateurs = new ArrayList<>();
         Utilisateur utilisateur;
@@ -104,6 +113,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
 
     @Override
+    // Un utilisateur par id.
     public Utilisateur find(int idUtilisateur) {
         Utilisateur user;
         try {
@@ -123,6 +133,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         return user;
     }
 
+    // Vérifie login + mot de passe (comme sur l'écran connexion).
     public Utilisateur authenticate(String login, String password) {
         Utilisateur user = null;
         try {

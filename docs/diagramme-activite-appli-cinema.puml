@@ -1,0 +1,62 @@
+@startuml diagramme-activite-appli-cinema
+title Diagramme d'activité — Application JavaFX Gestion cinéma
+
+skinparam ActivityBackgroundColor #E8F4FC
+skinparam ActivityBorderColor #2E6DA4
+skinparam ActivityDiamondBackgroundColor #FFF8DC
+skinparam ActivityStartColor #2E6DA4
+skinparam ActivityEndColor #2E6DA4
+
+|Utilisateur|
+start
+:Lance l'application;
+:Saisit identifiant et mot de passe;
+:Clic « Connexion »;
+
+|Système|
+:UtilisateurDAO.authenticate(login, mdp);
+
+if (Identifiants valides ?) then (non)
+  |Utilisateur|
+  :Afficher « Login ou MDP incorrect »;
+  stop
+else (oui)
+endif
+
+|Système|
+:Session.setUtilisateur(user);
+:Fermer fenêtre connexion;
+:Ouvrir écran Accueil;
+
+|Utilisateur|
+while (Action menu != « Quitter » ?) is (oui)
+  :Sélectionner une entrée du menu\n(liste / ajout franchise, cinéma, salle, accueil, quitter);
+
+  |Système|
+  if (Écran franchises ?) then (oui)
+    :Charger FXML liste ou ajout / modif franchise;
+    :DAO Franchise (lecture / création / mise à jour / suppression);\nconsigner activité si prévu;
+  elseif (Écran cinémas ?) then (oui)
+    :Charger FXML liste ou ajout / modif cinéma ou « Voir plus »;
+    :DAO Cinéma (+ salles affichées au besoin);
+  elseif (Écrans salles ?) then (oui)
+    :Charger FXML liste ou ajout / modif salle;
+    :DAO Salle;
+  elseif (Accueil ?) then (oui)
+    :Charger page_accueil.fxml;
+  else (autre)
+    :—;
+  endif
+
+  |Utilisateur|
+  :Utiliser l'écran puis fermer ou revenir au menu;
+endwhile (non)
+
+|Système|
+:Session.clear();
+:Platform.exit();
+
+|Utilisateur|
+stop
+
+@enduml

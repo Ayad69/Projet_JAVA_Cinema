@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
+// Page d'accueil après la connexion : menu + message "Bonjour ...".
 public class AccueilController extends MenuController implements Initializable {
-
+    @FXML
+    public Label labelError;
     @FXML
     private Label bienvenue;
 
@@ -17,7 +19,12 @@ public class AccueilController extends MenuController implements Initializable {
 
     }
 
+    // Met à jour le texte du label du haut avec le prénom/nom de l'utilisateur.
     public void setBienvenue() {
+        if (nameUti == null || nameUti.trim().isEmpty()) {
+            bienvenue.setText("BONJOUR");
+            return;
+        }
         bienvenue.setText("BONJOUR " + nameUti.toUpperCase());
     }
 

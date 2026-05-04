@@ -47,3 +47,18 @@ CREATE INDEX idx_cinema_franchise ON cinema(id_franchise);
 CREATE INDEX idx_salle_cinema ON salle(id_cinema);
 
 CREATE INDEX idx_franchise_gerant ON franchise(id_gerant);
+
+-- Journal d'activité (consignation des actions sur franchises et cinémas)
+CREATE TABLE activite_log (
+   id_log SERIAL PRIMARY KEY,
+   id_utilisateur INTEGER,
+   type_action VARCHAR(30) NOT NULL,
+   type_entite VARCHAR(30) NOT NULL,
+   id_entite INTEGER,
+   detail TEXT,
+   date_heure TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   CONSTRAINT fk_activite_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE SET NULL
+);
+
+CREATE INDEX idx_activite_date ON activite_log(date_heure);
+CREATE INDEX idx_activite_user ON activite_log(id_utilisateur);

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// Sert à ouvrir UNE SEULE connexion PostgreSQL pour tout le projet (pattern "singleton").
+// Comme ça on ne se connecte pas 50 fois à la base sans faire exprès.
 public class DBManager {
 
     private static String url = "jdbc:postgresql://localhost:5432/gestion_cinema";
@@ -14,6 +16,7 @@ public class DBManager {
 
     private static Connection connect;
 
+    // Donne la connexion : si elle n'existe pas encore, on la crée, sinon on renvoie la même.
     public static Connection getInstance() {
         if (connect == null) {
             try {
