@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-// Petite fenêtre "tu es sûr ?" avant de supprimer un cinéma (quand il y a un cas particulier).
+// Fenêtre de confirmation avant suppression d'un cinéma (liste cinémas).
 public class PopupCinema {
     @FXML
     private Label ff;

@@ -191,41 +191,28 @@ public class ListeCinemaController extends MenuController implements Initializab
         });
     }
 
-    // Colonne "Supprimer" : parfois popup de confirmation, sinon suppression directe.
+    // Colonne "Supprimer" : toujours une popup de confirmation (comme la liste franchises).
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
             private Button btn = new Button("Supprimer");
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
-                    FranchiseDAO etudiantDAO = new FranchiseDAO();
-                    if (etudiantDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
-                        try {
-                            // Charger le fichier FXML
-                            FXMLLoader fxmlLoader = new FXMLLoader(
-                                    getClass().getResource("/cinema/views/popup_cinema.fxml"));
-                            Parent root = fxmlLoader.load();
-                            PopupCinema popupCinemaController = fxmlLoader.getController();
-                            popupCinemaController.setCinemaToDelete(cinema, tvCinema);
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(
+                                getClass().getResource("/cinema/views/popup_cinema.fxml"));
+                        Parent root = fxmlLoader.load();
+                        PopupCinema popupCinemaController = fxmlLoader.getController();
+                        popupCinemaController.setCinemaToDelete(cinema, tvCinema);
 
-                            // Créer une nouvelle fenêtre (Stage)
-                            Stage stage = new Stage();
-                            WindowIcons.apply(stage);
-                            stage.setTitle("Pop-up");
-                            stage.setScene(new Scene(root));
-
-                            // Configurer la fenêtre en tant que modal
-                            stage.initModality(Modality.APPLICATION_MODAL);
-
-                            // Afficher la fenêtre et attendre qu'elle se ferme
-                            stage.show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        tvCinema.getItems().remove(cinema);
-                        CinemaDAO cinemaDAO = new CinemaDAO();
-                        cinemaDAO.delete(cinema);
+                        Stage stage = new Stage();
+                        WindowIcons.apply(stage);
+                        stage.setTitle("Pop-up");
+                        stage.setScene(new Scene(root));
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 });
             }

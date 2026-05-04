@@ -172,11 +172,23 @@ public class ListeFranchiseController extends MenuController implements Initiali
             {
                 btn.setOnAction(event -> {
                     Franchise franchise = getTableView().getItems().get(getIndex());
-                    tvFranchises.getItems().remove(franchise);
-                    FranchiseDAO franchiseDAO = new FranchiseDAO();
-                    franchiseDAO.delete(franchise);
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(
+                                getClass().getResource("/cinema/views/popup_franchise.fxml"));
+                        Parent root = fxmlLoader.load();
+                        PopupFranchise popupFranchiseController = fxmlLoader.getController();
+                        popupFranchiseController.setFranchiseToDelete(franchise, tvFranchises);
+
+                        Stage stage = new Stage();
+                        WindowIcons.apply(stage);
+                        stage.setTitle("Pop-up");
+                        stage.setScene(new Scene(root));
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
-                // btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
             }
 
             @Override
