@@ -3,6 +3,8 @@ package cinema.BO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+// Objet "franchise" : une société / groupe qui possède des cinémas.
+// On utilise StringProperty pour que JavaFX puisse afficher ça facilement dans des tableaux.
 public class Franchise {
 
     private int idFranchise;
