@@ -3,7 +3,7 @@
 drop table salle;
 drop table cinema;
 drop table franchise;
-drop table if exists activite_log;
+drop table activite_log;
 drop table utilisateur;
 
 
@@ -16,21 +16,6 @@ CREATE TABLE utilisateur(
    mdp VARCHAR(255) NOT NULL,
    CONSTRAINT utilisateur_PK PRIMARY KEY(id_utilisateur)
 );
-
--- Journal d'activité : qui a ajouté / modifié / supprimé une franchise ou un cinéma
-CREATE TABLE activite_log (
-   id_log SERIAL PRIMARY KEY,
-   id_utilisateur INTEGER,
-   type_action VARCHAR(30) NOT NULL,
-   type_entite VARCHAR(30) NOT NULL,
-   id_entite INTEGER,
-   detail TEXT,
-   date_heure TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   CONSTRAINT fk_activite_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE SET NULL
-);
-
-CREATE INDEX idx_activite_date ON activite_log(date_heure);
-CREATE INDEX idx_activite_user ON activite_log(id_utilisateur);
 
 -- Création de la table franchise
 -- Un utilisateur peut être gérant d'une franchise
@@ -73,7 +58,7 @@ CREATE INDEX idx_salle_cinema ON salle(id_cinema);
 
 CREATE INDEX idx_franchise_gerant ON franchise(id_gerant);
 
--- 1. Insertion des Utilisateurs (Gérants potentiels) — mots de passe = BCrypt (plain : jean / alice / lucas)
+-- 1. Insertion des Utilisateurs (Gérants potentiels)
 INSERT INTO
 	utilisateur (nom, prenom, login, mdp)
 VALUES
@@ -81,19 +66,19 @@ VALUES
 		'Dupont',
 		'Jean',
 		'jean.dupont@email.com',
-		'$2a$10$54YeUjKOCGlyCUtQiKeFyuUWfdy/Plle2kprKldrZv0hDFQqbV2Ba'
+		'jean'
 	),
 	(
 		'Martin',
 		'Alice',
 		'alice.martin@email.com',
-		'$2a$10$7wS/fPn5KWh9FNvLXYHwT.3rT//Uq.sruvU1hAIE8XSvp6SGRWgO2'
+		'alice'
 	),
 	(
 		'Bernard',
 		'Lucas',
 		'lucas.bernard@email.com',
-		'$2a$10$LqkIpqi4jXIo3Uz4cGaKZuc8jALctihxWkvUv85qzJq8u1qcS6DoG'
+		'lucas'
 	);
 
 -- 2. Insertion des Franchises
@@ -160,3 +145,45 @@ VALUES
     -- 3. Pour que ces droits s'appliquent aussi aux FUTURES tables créées :
     ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO cinema_usr;
     ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO cinema_usr;
+
+    CREATE TABLE IF NOT EXISTS activite_log (
+   id_log SERIAL PRIMARY KEY,
+   id_utilisateur INTEGER,
+   type_action VARCHAR(30) NOT NULL,
+   type_entite VARCHAR(30) NOT NULL,
+   id_entite INTEGER,
+   detail TEXT,
+   date_heure TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   CONSTRAINT fk_activite_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_activite_date ON activite_log(date_heure);
+CREATE INDEX IF NOT EXISTS idx_activite_user ON activite_log(id_utilisateur);
+
+
+CREATE TABLE IF NOT EXISTS activite_log (
+   id_log SERIAL PRIMARY KEY,
+   id_utilisateur INTEGER,
+   type_action VARCHAR(30) NOT NULL,
+   type_entite VARCHAR(30) NOT NULL,
+   id_entite INTEGER,
+   detail TEXT,
+   date_heure TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   CONSTRAINT fk_activite_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_activite_date ON activite_log(date_heure);
+CREATE INDEX IF NOT EXISTS idx_activite_user ON activite_log(id_utilisateur);
+
+
+
+UPDATE utilisateur SET mdp = '$2a$10$54YeUjKOCGlyCUtQiKeFyuUWfdy/Plle2kprKldrZv0hDFQqbV2Ba'
+WHERE login = 'jean.dupont@email.com' AND mdp = 'jean';
+
+UPDATE utilisateur SET mdp = '$2a$10$7wS/fPn5KWh9FNvLXYHwT.3rT//Uq.sruvU1hAIE8XSvp6SGRWgO2'
+WHERE login = 'alice.martin@email.com' AND mdp = 'alice';
+
+UPDATE utilisateur SET mdp = '$2a$10$LqkIpqi4jXIo3Uz4cGaKZuc8jALctihxWkvUv85qzJq8u1qcS6DoG'
+WHERE login = 'lucas.bernard@email.com' AND mdp = 'lucas';
+
+

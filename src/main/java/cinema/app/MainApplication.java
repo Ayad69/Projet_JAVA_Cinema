@@ -1,38 +1,40 @@
 package cinema.app;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import cinema.util.WindowIcons;
 
+// C'est le "vrai" démarrage de l'appli graphique (JavaFX).
+// Ici on ouvre la première fenêtre : la page de connexion.
 public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         try {
-            // chargement de la vue de connexion
+            // On charge le fichier FXML de la page connexion (le design de l'écran).
             Parent parent = FXMLLoader.load(getClass().getResource("/cinema/views/page_connexion.fxml"));
 
-            // configuration de la scène
+            // La scène = ce qu'on met dans la fenêtre (ici tout le contenu de la connexion).
             Scene scene = new Scene(parent);
 
-            // paramétrage du stage (fenêtre principale)
+            // Le stage = la fenêtre Windows (titre, taille, icône, etc.).
             primaryStage.setTitle("Application de gestion de franchise - Authentification");
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
-            primaryStage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
+            WindowIcons.apply(primaryStage);
             primaryStage.setScene(scene);
 
-            primaryStage.setAlwaysOnTop(true);   // Toujours au-dessus des autres fenêtres
-            // affichage
+            // Petite astuce : au début la fenêtre passe devant les autres, puis on enlève ça.
+            primaryStage.setAlwaysOnTop(true);
             primaryStage.show();
             primaryStage.setAlwaysOnTop(false);
-        } // end try
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

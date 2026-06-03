@@ -68,6 +68,11 @@
                 </MenuBar>
             </children>
         </VBox>
+        <ImageView layoutX="215.0" layoutY="48.0" fitHeight="100.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/cineforall_logo.png" />
+            </image>
+        </ImageView>
         <QuadCurve controlX="-18.05954933166504" controlY="-94.0" endX="683.0" endY="178.0" fill="#3A3AB6" layoutX="50.0" layoutY="300.0" startX="-328.0" startY="178.00003051757812" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
         <Label fx:id="bienvenue" alignment="TOP_CENTER" layoutY="172.0" prefHeight="40.0" prefWidth="729.0" text="BIENVENUE" textFill="#024010">
             <font>

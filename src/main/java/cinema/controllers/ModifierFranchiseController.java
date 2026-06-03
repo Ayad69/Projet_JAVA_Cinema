@@ -8,6 +8,7 @@ import cinema.BO.Franchise;
 import cinema.BO.Utilisateur;
 import cinema.DAO.FranchiseDAO;
 import cinema.DAO.UtilisateurDAO;
+import cinema.util.WindowIcons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// Écran pour corriger une franchise qu'on a cliquée dans la liste.
 public class ModifierFranchiseController extends MenuController implements Initializable {
 
     @FXML
@@ -35,6 +37,7 @@ public class ModifierFranchiseController extends MenuController implements Initi
     private int idGerant;
 
     @Override
+    // Même idée que l'ajout : on a besoin de la liste des gérants possibles.
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Utilisateur> utilisateurs = getUtilisateurList();
         lvGerantFranchise.setItems(utilisateurs);
@@ -87,9 +90,11 @@ public class ModifierFranchiseController extends MenuController implements Initi
 
                     // Créer une nouvelle fenêtre (Stage)
                     Stage stage = new Stage();
+                    WindowIcons.apply(stage);
                     stage.setTitle("Liste franchises");
                     stage.setScene(new Scene(root));
-
+                    // ne pas pouvoir agrandir la taille de la page
+                    stage.setResizable(false);
                     // Configurer la fenêtre en tant que modal
                     stage.initModality(Modality.APPLICATION_MODAL);
 
@@ -109,9 +114,11 @@ public class ModifierFranchiseController extends MenuController implements Initi
 
                 // Créer une nouvelle fenêtre (Stage)
                 Stage stage = new Stage();
+                WindowIcons.apply(stage);
                 stage.setTitle("Pop-up");
                 stage.setScene(new Scene(root));
-
+                // ne pas pouvoir agrandir la taille de la page
+                stage.setResizable(false);
                 // Configurer la fenêtre en tant que modal
                 stage.initModality(Modality.APPLICATION_MODAL);
 
@@ -142,6 +149,7 @@ public class ModifierFranchiseController extends MenuController implements Initi
 
             // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
+            WindowIcons.apply(stage);
             stage.setTitle("Liste franchises");
             stage.setScene(new Scene(root));
 

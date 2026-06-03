@@ -119,7 +119,7 @@
                 <Button fx:id="bRetour"
                         mnemonicParsing="false"
                         onAction="#bRetourClick"
-                        prefHeight="39.0"
+                        prefHeight="70.0"
                         prefWidth="200.0"
                         text="RETOUR"
                         textFill="#024010">

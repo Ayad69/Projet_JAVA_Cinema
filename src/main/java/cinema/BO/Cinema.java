@@ -1,5 +1,7 @@
 package cinema.BO;
 
+// Objet "cinéma" : ce qu'on manipule dans le code avant de le sauver en base de données.
+// Les champs correspondent aux colonnes de la table cinema (à peu près).
 public class Cinema {
 
     private int idCinema;
@@ -8,6 +10,7 @@ public class Cinema {
     private String ville;
     private int idFranchise;
 
+    // Constructeur : on donne toutes les valeurs d'un coup (souvent id=0 quand c'est un nouvel objet avant insertion SQL).
     public Cinema(int idCinema, String denomination, String adresse, String ville, int idFranchise) {
         this.idCinema = idCinema;
         this.denomination = denomination;
@@ -52,11 +55,10 @@ public class Cinema {
         this.idFranchise = idFranchise;
     }
 
-    @Override
-    public String toString() {
-        return "Cinéma{" +
-                "nom='" + denomination + '\'' +
-                ", franchise=" + idFranchise +
-                '}';
+    // Texte affiché si on fait System.out.println(cinema) par exemple.
+    public String toString(){
+        return "Dénomination "+this.denomination+" Franchise "+this.idFranchise;
     }
+
+
 }

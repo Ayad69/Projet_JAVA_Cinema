@@ -116,7 +116,7 @@
             </rowConstraints>
 
             </GridPane>
-         <Label fx:id="message" />
+            <Label fx:id="message" alignment="CENTER" maxWidth="480.0" text="" wrapText="true" />
         </VBox>
     </center>
 
@@ -126,11 +126,11 @@
                 <Insets bottom="20" top="15" />
             </padding>
 
-            <Button fx:id="bRetour" onAction="#bRetourClick" prefHeight="70.0" prefWidth="70.0" styleClass="action-button" text="Retour" />
+            <Button fx:id="bRetour" onAction="#bRetourClick" prefHeight="70.0" prefWidth="100.0" styleClass="action-button" text="Retour" />
 
-            <Button fx:id="bEffacer" onAction="#bEffacerClick" prefHeight="70" prefWidth="70" styleClass="action-button" text="Effacer" />
+            <Button fx:id="bEffacer" onAction="#bEffacerClick" prefHeight="70" prefWidth="100" styleClass="action-button" text="Effacer" />
 
-            <Button fx:id="bEnregistrer" onAction="#bEnregistrerClick" prefHeight="70.0" prefWidth="70.0" styleClass="action-button" text="Enregistrer" />
+            <Button fx:id="bEnregistrer" onAction="#bEnregistrerClick" prefHeight="70.0" prefWidth="100.0" styleClass="action-button" text="Enregistrer" />
         </HBox>
     </bottom>
 </BorderPane>

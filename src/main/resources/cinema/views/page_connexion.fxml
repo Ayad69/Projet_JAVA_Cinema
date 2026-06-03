@@ -46,7 +46,7 @@
                                 <Insets left="80.0" top="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="tfLogin" prefHeight="31.0" prefWidth="262.0" text="jean.dupont@email.com">
+                        <TextField fx:id="tfLogin" prefHeight="31.0" prefWidth="262.0" text="">
                             <opaqueInsets>
                                 <Insets top="15.0" />
                             </opaqueInsets>

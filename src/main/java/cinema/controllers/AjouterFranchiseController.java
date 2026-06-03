@@ -8,6 +8,7 @@ import cinema.BO.Franchise;
 import cinema.BO.Utilisateur;
 import cinema.DAO.FranchiseDAO;
 import cinema.DAO.UtilisateurDAO;
+import cinema.util.WindowIcons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,13 +18,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// Formulaire "nouvelle franchise" : nom, siège social, choix du gérant (utilisateur).
 public class AjouterFranchiseController extends MenuController implements Initializable {
 
+    @FXML
+    private Label message;
     @FXML
     private TextField tfNomFranchise, tfSiegeSocial;
     @FXML
@@ -32,11 +38,13 @@ public class AjouterFranchiseController extends MenuController implements Initia
     private ListView<Utilisateur> lvGerantFranchise;
 
     @Override
+    // Liste des utilisateurs possibles comme "gérant" de la nouvelle franchise.
     public void initialize(URL location, ResourceBundle resources) {
 
         ObservableList<Utilisateur> utilisateurs = getUtilisateurList();
 
         lvGerantFranchise.setItems(utilisateurs);
+        message.setText("");
     }
 
     private ObservableList<Utilisateur> getUtilisateurList() {
@@ -66,6 +74,7 @@ public class AjouterFranchiseController extends MenuController implements Initia
 
             // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
+            WindowIcons.apply(stage);
             stage.setTitle("Liste franchises");
             stage.setScene(new Scene(root));
 
@@ -83,18 +92,32 @@ public class AjouterFranchiseController extends MenuController implements Initia
     @FXML
     public void bEnregistrerClick(ActionEvent event) {
 
-        String x = tfNomFranchise.getText();
-        String y = tfSiegeSocial.getText();
+        String nomFranchise = tfNomFranchise.getText();
+        String siegeSocial = tfSiegeSocial.getText();
+        Utilisateur utilisateur = lvGerantFranchise.getSelectionModel().getSelectedItem();
 
-        int z = 1;
-        Franchise bloup = new Franchise(0, x, y, z);
+        if (nomFranchise == null || nomFranchise.trim().isEmpty()
+                || siegeSocial == null || siegeSocial.trim().isEmpty()
+                || utilisateur == null) {
+            message.setText("Veuillez remplir toutes les cases et choisir un gérant.");
+            message.setTextFill(Color.RED);
+            return;
+        }
+
+        Franchise franchise = new Franchise(0, nomFranchise.trim(), siegeSocial.trim(),
+                utilisateur.getIdUtilisateur());
 
         FranchiseDAO franchiseDAO = new FranchiseDAO();
-        boolean controle = franchiseDAO.create(bloup);
+        boolean controle = franchiseDAO.create(franchise);
         if (controle) {
             tfNomFranchise.clear();
             tfSiegeSocial.clear();
             lvGerantFranchise.getSelectionModel().clearSelection();
+            message.setText("Franchise enregistrée avec succès.");
+            message.setTextFill(Color.GREEN);
+        } else {
+            message.setText("L'enregistrement a échoué.");
+            message.setTextFill(Color.RED);
         }
 
     }
@@ -106,6 +129,7 @@ public class AjouterFranchiseController extends MenuController implements Initia
         if (tfSiegeSocial != null)
             tfSiegeSocial.clear();
         lvGerantFranchise.getSelectionModel().clearSelection();
+        message.setText("");
     }
 
 }
